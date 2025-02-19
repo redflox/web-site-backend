@@ -116,4 +116,18 @@ export class SpotifyController {
       throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  /**
+   * Obtiene las ultimas canciones escuchadas
+   * Endpoint: GET /api/spotify/recently-played
+   */
+  @Get('recently-played')
+  async getRecentlyPlayed() {
+    try {
+      const recentlyPlayed = await this.spotifyService.getRecentlyPlayed();
+      return recentlyPlayed || 'No recently played tracks found';
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }

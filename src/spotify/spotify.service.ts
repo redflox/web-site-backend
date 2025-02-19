@@ -153,7 +153,7 @@ export class SpotifyService {
   async getTopArtists() {
     return this.makeRequest({
       method: 'get',
-      url: 'https://api.spotify.com/v1/me/top/artists',
+      url: 'https://api.spotify.com/v1/me/top/artists?limit=8',
     });
   }
 
@@ -161,7 +161,7 @@ export class SpotifyService {
   async getTopTracks() {
     const data = await this.makeRequest({
       method: 'get',
-      url: 'https://api.spotify.com/v1/me/top/tracks?limit=5',
+      url: 'https://api.spotify.com/v1/me/top/tracks',
     });
     return data.items;
   }
@@ -171,6 +171,15 @@ export class SpotifyService {
     const data = await this.makeRequest({
       method: 'get',
       url: 'https://api.spotify.com/v1/me/playlists?limit=5',
+    });
+    return data.items;
+  }
+
+  // Metodo para obtener las ultimas canciones escuchadas
+  async getRecentlyPlayed() {
+    const data = await this.makeRequest({
+      method: 'get',
+      url: 'https://api.spotify.com/v1/me/player/recently-played',
     });
     return data.items;
   }
